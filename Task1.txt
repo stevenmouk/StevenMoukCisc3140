@@ -7,8 +7,9 @@
 3) nodeJS : v16.16.0 , location: /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Aliases/nodejs
 
 
-4) npm: 8.11.0 , location: /usr/local/bin/npm
+3) npm: 8.11.0 , location: /usr/local/bin/npm
 
+4) gitconfig: $HOME/.gitconfig, $HOME/.gitignore
 
 5)VS Code , location: Macintosh HD/Applications
 
