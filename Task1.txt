@@ -1,0 +1,56 @@
+1) iTerm , location: Macintosh HD/Applications
+
+
+2) git version 2.32.0 (Apple Git-132) , location: /usr/bin/git
+
+
+3) nodeJS : v16.16.0 , location: /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Aliases/nodejs
+
+
+4) npm: 8.11.0 , location: /usr/local/bin/npm
+
+
+5)VS Code , location: Macintosh HD/Applications
+
+
+6) 
+VS Code Config File: 
+
+{
+  "explorer.confirmDelete": false,
+  "workbench.iconTheme": "eq-material-theme-icons-palenight",
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "editor.formatOnSave": true,
+  "beautify.ignore": "",
+  "liveServer.settings.donotVerifyTags": true,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "editor.cursorBlinking": "phase",
+  "editor.cursorSmoothCaretAnimation": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.printWidth": 100,
+  "html.format.enable": false,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "bracketPairColorizer.depreciation-notice": false,
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
+  },
+  "tabnine.experimentalAutoImports": true,
+  "[java]": {
+    "editor.defaultFormatter": "redhat.java"
+  },
+  "explorer.confirmDragAndDrop": false,
+  "hardhat.telemetry": true,
+  "workbench.colorTheme": "Palenight Italic"
+}
+, 
+
+location: Macintosh HD/Applications
