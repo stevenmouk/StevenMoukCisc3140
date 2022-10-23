@@ -33,6 +33,19 @@ timeUntil(finalDate, "final");
 }else if( choice.equals("custom")){
 
 
+
+LocalDate date1 = dateSelector("first");
+System.out.print(date1);
+
+
+
+
+
+
+// System.out.println("Enter first date in MM/DD/YYYY or MM-DD format");
+// String secondChoice = scanner.nextLine(); 
+
+
 }
 
 }
@@ -51,6 +64,45 @@ System.out.println(item + count++ + " is due in " + difference  +" days");
 }
 }
 
+}
+
+public static LocalDate dateSelector(String dateOrder){
+
+    Scanner scanner2 = new Scanner(System.in); 
+
+System.out.println("Enter "+ dateOrder + "date in MM/DD/YYYY or MM-DD format");
+String dateChoice = scanner2.nextLine(); 
+
+LocalDate date = LocalDate.now();
+
+while(!(dateChoice.matches(".*.*/.*.*/.*.*.*.*") && dateChoice.length()==10) && !(dateChoice.matches(".*.*-.*.*") && dateChoice.length()==5)){
+
+    System.out.println("Incorrect Format, try again");
+    dateChoice = scanner2.nextLine(); 
+
+}
+
+if(dateChoice.matches(".*.*/.*.*/.*.*.*.*") && dateChoice.length()==10){
+
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy", Locale.ENGLISH);
+ date = LocalDate.parse(dateChoice, formatter);
+
+}
+else if(dateChoice.matches(".*.*-.*.*") && dateChoice.length()==5){
+     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy", Locale.ENGLISH);
+     dateChoice = dateChoice+"-"+date.getYear();
+     
+ LocalDate newdate = LocalDate.parse(dateChoice, formatter);
+
+if(newdate.isBefore(date)){
+    newdate = newdate.plusYears(1);
+  
+}
+    date = newdate;
+
+
+}
+return date;
 }
 
 // part 1 of lab: adding a function to print the difference of two dates
