@@ -8,7 +8,7 @@ import  java.time.temporal.ChronoUnit;
 
 class TimeLeft{
 public static void main(String[] args){
-
+LocalDate current = LocalDate.now();
 
  
  LocalDate[] labDates = new LocalDate[]{LocalDate.of(2022, 9, 28),LocalDate.of(2022, 10, 26),LocalDate.of(2022, 11, 23),LocalDate.of(2022, 12, 7) };
@@ -17,41 +17,39 @@ public static void main(String[] args){
 
 Scanner scanner = new Scanner(System.in); 
 
-System.out.println("Choose between assignment, quiz, final, or custom: ");
+System.out.println("Choose between assignment, quiz, final, custom, or changeDate : ");
 String choice = scanner.nextLine(); 
 
 if(choice.equals("assignment")){
-timeUntil(labDates, "lab");
+timeUntil(labDates, "lab",current);
 
 }else if(choice.equals("quiz")){
-timeUntil(quizDates, "quiz");
+timeUntil(quizDates, "quiz", current);
 
 }else if (choice.equals("final")){
 
-timeUntil(finalDate, "final");
+timeUntil(finalDate, "final", current);
 
 }else if( choice.equals("custom")){
 
 
 
-LocalDate date1 = dateSelector("first");
-System.out.print(date1);
+LocalDate firstDate = dateSelector("first");
+LocalDate secondDate = dateSelector("second");
+
+dateDifference(firstDate, secondDate);
 
 
-
-
-
-
-// System.out.println("Enter first date in MM/DD/YYYY or MM-DD format");
-// String secondChoice = scanner.nextLine(); 
-
+}else if(choice.equals("changeDate")){
+current = dateSelector("new");
+System.out.println(current);
 
 }
 
 }
 
-public static void timeUntil(LocalDate[] dates, String item){
-LocalDate current = LocalDate.now();
+public static void timeUntil(LocalDate[] dates, String item, LocalDate current){
+
 int count=1;
 for(int i=0; i<dates.length;i++){
 long difference = ChronoUnit.DAYS.between(current, dates[i]) + 1;
@@ -70,7 +68,7 @@ public static LocalDate dateSelector(String dateOrder){
 
     Scanner scanner2 = new Scanner(System.in); 
 
-System.out.println("Enter "+ dateOrder + "date in MM/DD/YYYY or MM-DD format");
+System.out.println("Enter "+ dateOrder + " date in MM/DD/YYYY or MM-DD format");
 String dateChoice = scanner2.nextLine(); 
 
 LocalDate date = LocalDate.now();
@@ -85,7 +83,7 @@ while(!(dateChoice.matches(".*.*/.*.*/.*.*.*.*") && dateChoice.length()==10) && 
 if(dateChoice.matches(".*.*/.*.*/.*.*.*.*") && dateChoice.length()==10){
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy", Locale.ENGLISH);
- date = LocalDate.parse(dateChoice, formatter);
+    date = LocalDate.parse(dateChoice, formatter);
 
 }
 else if(dateChoice.matches(".*.*-.*.*") && dateChoice.length()==5){
