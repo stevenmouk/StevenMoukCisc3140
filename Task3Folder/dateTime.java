@@ -17,11 +17,13 @@ LocalDate current = LocalDate.now();
 
 Scanner scanner = new Scanner(System.in); 
 
-System.out.println("Choose between assignment, quiz, final, custom, or changeDate : ");
+while(true){
+System.out.println("Choose between assignment, quiz, final, custom, changeDate, or resetDate : ");
 String choice = scanner.nextLine(); 
 
 if(choice.equals("assignment")){
 timeUntil(labDates, "lab",current);
+
 
 }else if(choice.equals("quiz")){
 timeUntil(quizDates, "quiz", current);
@@ -44,10 +46,16 @@ dateDifference(firstDate, secondDate);
 current = dateSelector("new");
 System.out.println(current);
 
-}
+}else if(choice.equals("resetDate")){
+    current = LocalDate.now();
+}else if(choice.isEmpty()){
+break;
 
 }
 
+}
+
+}
 public static void timeUntil(LocalDate[] dates, String item, LocalDate current){
 
 int count=1;
