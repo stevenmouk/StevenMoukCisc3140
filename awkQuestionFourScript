@@ -1,0 +1,40 @@
+
+
+BEGIN {
+
+FS=","
+}
+
+{
+
+if($5<1000 && $17<5000){
+    count++;
+    if($15==0 ){
+        firstBracket++;
+    }else if($15>0 && $15<=10){
+        secondBracket++;
+    }else if($15>10 && $15<=20){
+        thirdBracket++;
+    }else if($15>20 && $15<=30){
+        fourthBracket++;
+    } else if($15>30 && $15<=40){
+        fifthBracket++;
+    }else if($15>40 && $15<=50){
+        sixthBracket++;
+    }else if($15>50){
+        seventhBracket++;
+    }
+}
+}
+
+END{
+
+print "The number of rides with no tip is ", firstBracket, "or", firstBracket/count * 100, "percent"
+print "The number of rides that tip between 0 and 10 dollars is ", secondBracket, "or", secondBracket/count * 100, "percent"
+print "The number of rides that tip between 10 and 20 dollars is ", thirdBracket, "or", thirdBracket/count * 100, "percent"
+print "The number of rides that tip between 20 and 30 dollars is ", fourthBracket, "or", fourthBracket/count * 100, "percent"
+print "The number of rides that tip between 30 and 40 dollars is ", fifthBracket, "or", fifthBracket/count * 100, "percent"
+print "The number of rides that tip between 40 and 50 dollars is ", sixthBracket, "or", sixthBracket/count * 100, "percent"
+print "The number of rides that tip over 50 dollars is", seventhBracket, "or", seventhBracket/count * 100, "percent"
+
+}

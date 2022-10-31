@@ -1,0 +1,7 @@
+The first step is to go onto nyc open data and download the nyc taxi data. From there run the command awk -f 'awkQuestionOneScript' taxi.csv. 
+Replace the awkQuestionOneScript with any of the five scripts that parse different information in the data. Also, replace taxi.csv with the name 
+of the csv file you have for the taxi data. Mine was named taxi.csv so that is what I used. It should take a few minuts to run. The issue I ran into 
+was that my mac stuggled to run the program due to how large the csv file is. Also, using awk took some time to get used to due to the syntax being 
+pretty different from any language I learned before. There was never a Begin or end in other languages. What went well was that the counting and the for
+and if statements all had the sytax I was used to. 
+

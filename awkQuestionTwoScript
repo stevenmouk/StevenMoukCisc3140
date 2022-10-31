@@ -1,0 +1,37 @@
+
+
+BEGIN {
+
+FS=","
+}
+
+{
+
+
+
+if($5<1000 && $17<5000){
+    count++;
+    if($4==1){
+        onePerson++;
+    }else if($4==2){
+        twoPeople++;
+    }else if($4==3){
+        threePeople++;
+    }else{
+        left++;
+    }
+}
+}
+
+END{
+
+print "The number of rides with one person is", onePerson, "or", onePerson/count * 100, "percent"
+print "The number of rides with two people is", twoPeople, "or", twoPeople/count * 100, "percent" 
+print "The number of rides with three people is", threePeople,"or", threePeople/count * 100, "percent" 
+print "The number of rides with four or more people is", left,"or", left/count * 100, "percent" 
+
+
+
+
+
+}

@@ -1,0 +1,31 @@
+
+
+BEGIN {
+
+FS=","
+}
+
+{
+
+    skewedDistance+=$5;
+    skewedCost+=$17; 
+
+if($5<1000 && $17<5000){
+    distance+=$5;
+    cost+=$17; 
+}else{
+    errorCount++;
+    print " cost: " $5 " distance: " $17;
+}
+
+}
+
+END{
+
+printf "%s %.2f %s\n", " The average cost of an nyc taxi in January 2022 is: $",cost/distance, "per mile" 
+printf "%s %.2f %s\n", " The average skewed cost of an nyc taxi in January 2022 is: $",skewedCost/skewedDistance, "per mile" 
+print "error count: " errorCount
+
+
+
+}

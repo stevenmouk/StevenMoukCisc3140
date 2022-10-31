@@ -1,0 +1,36 @@
+
+
+BEGIN {
+
+FS=","
+}
+
+{
+if($5<1000 && $17<5000){
+    count++;
+    if($17>0 && $17<=20){
+        firstBracket++;
+    }else if($17>20 && $17<=40){
+        secondBracket++;
+    }else if($17>40 && $17<=60){
+        thirdBracket++;
+    }else if($17>60 && $17<=80){
+        fourthBracket++;
+    } else if($17>80 && $17<=100){
+        fifthBracket++;
+    }else if($17>100){
+        sixthBracket++;
+    }
+}
+}
+
+END{
+
+print "The number of rides that cost between 0 and 20 dollars is ", firstBracket, "or", firstBracket/count * 100, "percent"
+print "The number of rides that cost between 20 and 40 dollars is ", secondBracket, "or", secondBracket/count * 100, "percent"
+print "The number of rides that cost between 40 and 60 dollars is ", thirdBracket, "or", thirdBracket/count * 100, "percent"
+print "The number of rides that cost between 60 and 80 dollars is ", fourthBracket, "or", fourthBracket/count * 100, "percent"
+print "The number of rides that cost between 80 and 100 dollars is ", fifthBracket, "or", fifthBracket/count * 100, "percent"
+print "The number of rides that cost over 100 dollars is", sixthBracket, "or", sixthBracket/count * 100, "percent"
+
+}
