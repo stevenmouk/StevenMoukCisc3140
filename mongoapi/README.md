@@ -2,7 +2,7 @@
 
 The hosted website can be found at (https://hosted-mongo-api-uxub.vercel.app/)
 
-Here you can add,delete,edit inputs into the atlas database. It was a front end connected to the backend api.
+Here you can add,delete,edit inputs into the atlas database. It has a front end connected to the backend api.
 
 ## Getting Started
 
