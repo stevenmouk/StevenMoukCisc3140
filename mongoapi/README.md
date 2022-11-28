@@ -24,6 +24,10 @@ Another example is the handleDelete function in the `pages/index.js`. Once the t
 
 The `lib/mongodb.js` file is where I connect to the atlas database. This code is mostly boilerplate and provided by mongoDB Atlas to allow for connecting to a collection. It uses the MongoDB URI String which can be found in the .env file.
 
+## Data Capacity
+
+Since this is a hosted database, the data can be added manually by anyone and can hold virtually endless amounts of data. Even adding data in the localhost will add the data to the cloud database since a connection to the collection is made. As such, anyone can come and add or delete data. This is not ideal but it works for testing and learning how to use the api endpoints of a database. The database can hold well over 100 data inputs, but since anyone can come and delete them, I chose to not add that many. There are about 20 last time I checked but the database can hold an endless about of data but will need to be paid for one it reaches the limit.
+
 ## Learn More on MongoDB Atlas
 
 The mongoDB Atlas documentation can be found at (https://www.mongodb.com/docs/atlas/).
