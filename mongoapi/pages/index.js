@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { connectToDatabase } from "../lib/mongodb";
 import { useRouter } from "next/router";
 import { BsFillTrashFill } from "react-icons/bs";
 
@@ -291,16 +290,4 @@ export default function Home({ properties }) {
       </div>
     </div>
   );
-}
-
-export async function getServerSideProps(context) {
-  const { db } = await connectToDatabase();
-
-  const data = await db.collection("Squirrel_Sightings").find({}).toArray();
-  const properties = JSON.parse(JSON.stringify(data));
-
-  console.log(data);
-  return {
-    props: { properties: properties },
-  };
 }

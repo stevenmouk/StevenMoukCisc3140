@@ -1,9 +1,13 @@
-import { connectToDatabase } from "../../lib/mongodb";
+// import conn from "../../lib/postgresql";
 
-export default async (req, res) => {
-  const { db } = await connectToDatabase();
-  const data = req.query;
-  const response = await db.collection("Squirrel_Sightings").insertOne(data);
-
-  res.json(response);
-};
+// export default async (req, res) => {
+//   try {
+//     console.log("req nom", req.body);
+//     const query = "INSERT INTO posts(content) VALUES($1)";
+//     const values = [req.body.content];
+//     const result = await conn.query(query, values);
+//     console.log("ttt", result);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
