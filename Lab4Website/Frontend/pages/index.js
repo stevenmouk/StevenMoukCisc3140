@@ -1,18 +1,31 @@
 import Head from "next/head";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { connectToDatabase } from "../lib/mongodb";
+
 import { useRouter } from "next/router";
 import { BsFillTrashFill } from "react-icons/bs";
 
-export default function Home({ properties }) {
+export default function Home() {
+  //sets state variables
   const router = useRouter();
   const [radio, setRadio] = useState("");
+  const [list, setList] = useState(null);
 
-  const refreshData = () => {
-    router.replace(router.asPath);
-  };
+  //read function to get current list of inputs
+  async function read() {
+    const res = await fetch("/api/postgreRead");
 
+    const data = await JSON.parse(JSON.stringify(await res.json()));
+    setList(data);
+
+    console.log(data);
+  }
+  //calls read function when page reloads.
+  useEffect(() => {
+    read();
+  }, []);
+
+  //handles the submit of the input for to add a new sighting
   async function handleSubmit(e) {
     e.preventDefault();
     let location = e.target.childNodes[0].childNodes[1].childNodes[0].value;
@@ -28,20 +41,24 @@ export default function Home({ properties }) {
     e.target.childNodes[3].childNodes[1].childNodes[0].value = "";
 
     const data = await fetch(
-      `/api/addSighting?location=${location}&Date=${date}&Time=${time}&OnGround=${onGround}`
+      `/api/postgreAdd?location=${location}&date=${date}&time=${time}&onGround=${onGround}`
     );
-
+    console.log("postgreData");
     console.log(await data.json());
-    refreshData();
+
+    //calls read again as it just changed
+    read();
   }
 
+  //handles the deleting of inputs with the api call
   async function handleDelete(id) {
-    console.log(id);
-    const data = await fetch(`/api/deleteSighting?_id=${id}`);
+    const data = await fetch(`/api/postgreDelete?id=${id}`);
     console.log(await data.json());
-    refreshData();
+
+    read();
   }
 
+  //updates inputs with the api call
   async function handleUpdate(e) {
     let what = e.target.childNodes[1].childNodes[0].childNodes[1].value;
     e.target.childNodes[1].childNodes[0].childNodes[1].value = "";
@@ -49,15 +66,18 @@ export default function Home({ properties }) {
     e.target.childNodes[1].childNodes[0].childNodes[3].value = "";
     e.preventDefault();
 
-    const data = await fetch(`/api/updateSighting?radio=${radio}&what=${what}&to=${to}`);
+    const data = await fetch(`/api/postgreUpdate?radio=${radio}&what=${what}&to=${to}`);
     console.log(await data.json());
-    refreshData();
+
+    read();
   }
+  //handles change of the radio buttons
   async function handleChange(e) {
     console.log(e.target.value);
     setRadio(e.target.value);
   }
 
+  //front end portion
   return (
     <div id="container">
       <div id="background"></div>
@@ -148,7 +168,7 @@ export default function Home({ properties }) {
             Read
           </button>
 
-          {properties?.map((entry) => {
+          {list?.map((entry) => {
             console.log(entry);
             return (
               <div className="flex flex-col mt-4 border-2 border-white rounded-lg h-fit p-3 w-full items-start justify-start ">
@@ -156,12 +176,12 @@ export default function Home({ properties }) {
                   <div id="text">{entry.location}</div>
                   <BsFillTrashFill
                     className="text-[#fe50a7]"
-                    onClick={() => handleDelete(entry._id)}
+                    onClick={() => handleDelete(entry.id)}
                   />
                 </div>
-                <div id="text">{entry.Date}</div>
-                <div id="text">{entry.Time}</div>
-                <div id="text">{entry.OnGround}</div>
+                <div id="text">{entry.date}</div>
+                <div id="text">{entry.time}</div>
+                <div id="text">{entry.onGround}</div>
               </div>
             );
           })}
@@ -198,7 +218,7 @@ export default function Home({ properties }) {
                   <input
                     id="list-radio-id"
                     type="radio"
-                    value="Date"
+                    value="date"
                     name="list-radio"
                     className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                   />
@@ -216,7 +236,7 @@ export default function Home({ properties }) {
                   <input
                     id="list-radio-millitary"
                     type="radio"
-                    value="Time"
+                    value="time"
                     name="list-radio"
                     className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                   />
@@ -234,7 +254,7 @@ export default function Home({ properties }) {
                   <input
                     id="list-radio-passport"
                     type="radio"
-                    value="OnGround"
+                    value="onGround"
                     name="list-radio"
                     className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                   />
@@ -291,16 +311,4 @@ export default function Home({ properties }) {
       </div>
     </div>
   );
-}
-
-export async function getServerSideProps(context) {
-  const { db } = await connectToDatabase();
-
-  const data = await db.collection("Squirrel_Sightings").find({}).toArray();
-  const properties = JSON.parse(JSON.stringify(data));
-
-  console.log(data);
-  return {
-    props: { properties: properties },
-  };
 }

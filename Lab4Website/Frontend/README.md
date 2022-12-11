@@ -1,34 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Getting Started with server
 
-## Getting Started
+The backend of this project is built with Nextjs, prisma, and postgreSQL. Prisma is an ORM to help get connected to postgreSQL. To get started with the server, download postgreSQL 15 and run a server on localhost:5432. The docs can be found at https://www.postgresql.org/docs/).
+
+You can easily start a server using the postges app. The potgres app makes it very easy to start a postgres server. The documentation and download can be found at: (https://www.postgresql.org/docs/). The next step is to download pg Admin. This helps to manage the postgreSQL database. The download link can be found at: (https://www.pgadmin.org/download/).
+
+Within pg Admin, I created a database called Squirrel with username: "postgres" and password: "admin" . This will complete the setup of the database.
+
+Within the project, enter the prisma folder and the schema.prisma file. This is where the schema for the datbase was created. It uses the DATABASE_URL that can be found in the .env file. This is how I connect the local database to the backend. In this file, you can also see the schema which is the Sightings table. It has the inputs of id,location, date, time, onGround. These are all of my inputs for the table.
+
+Finally, the lib/prisma.js file creates the client prisma connection which is used in the api calls.
+
+The prisma documentation can be found at (https://www.prisma.io/docs)
+
+## Api Endpoints
+
+The api endpoints can be found in the pages/api folder. There are 4 api endponts. These are used for create, Read, update, delete and they are labeled accordingly. The postgreAdd.js is the endpoint for adding a new sighting. postgreRead is used to read a new sighting. PostgreUpdate.js is used to update a sighting and same for delete. They all use the prisma crud guide found at(https://www.prisma.io/docs/concepts/components/prisma-client/crud)
+
+## Running the website
 
 First, run the development server:
 
 ```bash
-npm run dev
-# or
+yarn
+# followed by
 yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+You can start editing the page by modifying `pages/index.js`. This page contains the front end and makes fetch calls to the backend api. It is made with react and next js. The html in the document is the front end. The functions at the top are the api calls to the custom api endpoints I made in the pages/api folder. The styles are also in this file with the className in the html markup being the styles.
