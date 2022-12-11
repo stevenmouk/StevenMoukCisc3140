@@ -2,11 +2,11 @@
 
 The backend of this project is built with Nextjs, prisma, and postgreSQL. Prisma is an ORM to help get connected to postgreSQL. To get started with the server, download postgreSQL 15 and run a server on localhost:5432. The docs can be found at https://www.postgresql.org/docs/).
 
-You can easily start a server using the postges app. The potgres app makes it very easy to start a postgres server. The documentation and download can be found at: (https://www.postgresql.org/docs/). The next step is to download pg Admin. This helps to manage the postgreSQL database. The download link can be found at: (https://www.pgadmin.org/download/).
+You can easily start a server using the postges app. The potgres app makes it very easy to start a postgres server. The documentation and download for the app can be found at: (https://postgresapp.com/downloads.html). The next step is to download pg Admin. This helps to manage the postgreSQL database. The download link can be found at: (https://www.pgadmin.org/download/).
 
 Within pg Admin, I created a database called Squirrel with username: "postgres" and password: "admin" . This will complete the setup of the database.
 
-Within the project, enter the prisma folder and the schema.prisma file. This is where the schema for the datbase was created. It uses the DATABASE_URL that can be found in the .env file. This is how I connect the local database to the backend. In this file, you can also see the schema which is the Sightings table. It has the inputs of id,location, date, time, onGround. These are all of my inputs for the table.
+Within the project, enter the prisma folder and the schema.prisma file. This is where the schema for the datbase was created. It uses the DATABASE_URL that can be found in the .env file. This is how I connect the local database to the backend. In this file, you can also see the schema which is the Sighting table. It has the inputs of id,location, date, time, onGround. These are all of my inputs for the table. The id portion increments itself and the rest is user entered.
 
 Finally, the lib/prisma.js file creates the client prisma connection which is used in the api calls.
 
